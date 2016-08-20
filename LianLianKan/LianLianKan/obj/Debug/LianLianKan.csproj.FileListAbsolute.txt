@@ -1,0 +1,9 @@
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\bin\Debug\LianLianKan.exe.config
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\bin\Debug\LianLianKan.exe
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\bin\Debug\LianLianKan.pdb
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.csprojResolveAssemblyReference.cache
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Frm_LianLianKan.resources
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Properties.Resources.resources
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.csproj.GenerateResource.Cache
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.exe
+F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.pdb
