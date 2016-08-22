@@ -58,6 +58,7 @@
 			// 
 			// panel_gameArea
 			// 
+			this.panel_gameArea.BackColor = System.Drawing.SystemColors.Control;
 			this.panel_gameArea.Location = new System.Drawing.Point(53, 118);
 			this.panel_gameArea.Name = "panel_gameArea";
 			this.panel_gameArea.Size = new System.Drawing.Size(779, 515);

@@ -10,12 +10,12 @@ namespace LianLianKan
 	public class Data
 	{
 
-		static public int width = 12;
+		static public int width = 14;
 		static public int height = 8;
-		static public int imageCount = 20;
+		static public int imageCount = 28;
 		static public Image[] images;
-		static public int imageSize = 60;
-		static public int offset = -1;
+		static public int imageSize = 50;
+		static public int offset = 3;
 	}
 
 	

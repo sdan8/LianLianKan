@@ -20,11 +20,13 @@ namespace LianLianKan
 			LEFT
 		};
 
-
 		Button[,] btn;
-		object currentBtnTag;
+		List<Button> btnList = new List<Button>();
+		List<Button> allBtn = new List<Button>();
+		Button currentBtn;
 		Button tempLastBtn;
 		bool finded;
+		
 
 		public Frm_LianLianKan()
 		{
@@ -55,32 +57,83 @@ namespace LianLianKan
 			ImageInit();
 			GridInit();
 			RandomApplyImage();
-			panel_gameArea.BackgroundImage = Bitmap.FromFile(Application.StartupPath + @"\img\bg.jpg");
-			panel_gameArea.BackgroundImageLayout = ImageLayout.Center;
 			btn_start.Text = "重新开始";
-			
+
+			allBtn.Clear();
+			for (int i = 0; i < Data.height; i++)
+			{
+				for (int ii = 0; ii < Data.width; ii++)
+				{
+					allBtn.Add(btn[ii, i]);
+				}
+			}
 		}
 
 		private void btn_clear_Click(object sender, EventArgs e)
 		{
-			//if (btn[0, 0].BackgroundImage.Tag.Equals(btn[0, 1].BackgroundImage.Tag))
-			//{
-			//	panel_gameArea.Controls.Remove(btn[0, 0]);
-			//}
-			//if (btn[0, 0].BackgroundImage.Tag.Equals(btn[1, 0].BackgroundImage.Tag))
-			//{
 			panel_gameArea.BackgroundImage = null;
-				for (int i = 0; i < Data.height; i++)
+			for (int i = 0; i < Data.height; i++)
+			{
+				for (int ii = 0; ii < Data.width; ii++)
 				{
-					for (int ii = 0; ii < Data.width; ii++)
-					{
-						panel_gameArea.Controls.Remove(btn[ii, i]);
-					}
+					panel_gameArea.Controls.Remove(btn[ii, i]);
 				}
-			//}
+			}
 		}
 
-		void ImageInit()
+		private void btnClick(object sender, EventArgs e)
+		{
+			Button tempCurrentBtn = (Button)sender;
+			//选中第一个
+			if (currentBtn == null)
+			{
+				currentBtn = tempCurrentBtn;
+				tempCurrentBtn.Enabled = false;
+				tempCurrentBtn.FlatAppearance.BorderSize = 2;
+				tempCurrentBtn.FlatAppearance.BorderColor = Color.Red;
+				tempLastBtn = tempCurrentBtn;
+			}
+			//选中第二个
+			else
+			{
+				IsFindPath(tempLastBtn, tempCurrentBtn);
+				if (finded)
+				{
+					btn[GetWByBtn(tempCurrentBtn), GetHByBtn(tempCurrentBtn)] = null;
+					btn[GetWByBtn(tempLastBtn), GetHByBtn(tempLastBtn)] = null;
+					allBtn.Remove(tempLastBtn);
+					allBtn.Remove(tempCurrentBtn);
+					panel_gameArea.Controls.Remove(tempLastBtn);
+					panel_gameArea.Controls.Remove(tempCurrentBtn);
+					finded = false;
+					currentBtn = null;
+
+					if (allBtn.Count == 0)
+					{
+						MessageBox.Show("你赢了！", "恭喜", MessageBoxButtons.OK);
+					}
+					//遍历是否有解
+					else if(!CheckResult())
+					{
+						MessageBox.Show("无解", "提示", MessageBoxButtons.OK);
+					}
+				}
+				else
+				{
+					tempLastBtn.Enabled = true;
+					tempLastBtn.FlatAppearance.BorderSize = 0;
+					tempLastBtn.FlatAppearance.BorderColor = Color.White;
+					currentBtn = null;
+				}
+			}
+		}
+
+		private void btn_exit_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+
+		private void ImageInit()
 		{
 			Data.images = new Image[Data.imageCount];
 			for (int i = 0; i < Data.imageCount; i++)
@@ -89,7 +142,7 @@ namespace LianLianKan
 			}
 		}
 
-		void GridInit()
+		private void GridInit()
 		{
 			for (int i = 0; i < Data.height; i++)
 			{
@@ -103,26 +156,18 @@ namespace LianLianKan
 					bt.Size = new Size(Data.imageSize, Data.imageSize);
 					bt.Parent = panel_gameArea;
 					bt.BackgroundImageLayout = ImageLayout.Stretch;
-
-					bt.Font = new System.Drawing.Font("华文行楷", 27);
-					bt.ForeColor = Color.Red;
-
+					bt.FlatStyle = FlatStyle.Flat;
+					bt.FlatAppearance.BorderSize = 0;
+					bt.FlatAppearance.BorderColor = Color.White;
 					panel_gameArea.Controls.Add(bt);
 
 					btn[ii, i] = bt;
+					btnList.Add(btn[ii, i]);
 				}
 			}
-
-			//for (int i = 0; i < Data.width; i++)
-			//{
-			//	for (int ii = 0; ii < Data.height; ii++)
-			//	{
-			//		btn[i, ii].Text = i.ToString() + "," + ii.ToString();
-			//	}
-			//}
 		}
 
-		void RandomApplyImage()
+		private void RandomApplyImage()
 		{
 			//一共有l对
 			int l = Data.height * Data.width / 2;
@@ -130,17 +175,6 @@ namespace LianLianKan
 			int a = l / Data.imageCount;
 			//余出r对
 			int r = l % Data.imageCount;
-
-			List<Button> btnList = new List<Button>();
-
-			for (int i = 0; i < Data.height; i++)
-			{
-				for (int ii = 0; ii < Data.width; ii++)
-				{
-					btnList.Add(btn[ii, i]);
-				}
-			}
-
 
 			Random random = new Random();
 
@@ -176,17 +210,12 @@ namespace LianLianKan
 			}
 		}
 
-
-
-		void IsFindPath(Button origin,Button destination)
+		#region 寻路系统
+		
+		private void IsFindPath(Button origin,Button destination)
 		{
-			//string oName = origin.Name;
-			//string dName = destination.Name;
-			
-			//int ow = int.Parse(oName.Substring(0, oName.LastIndexOf('_')));
-			//int oh = int.Parse(oName.Substring(oName.LastIndexOf('_') + 1));
-			//int dw = int.Parse(dName.Substring(0, dName.LastIndexOf('_')));
-			//int dh = int.Parse(dName.Substring(dName.LastIndexOf('_') + 1));
+			if (!origin.BackgroundImage.Tag.Equals(destination.BackgroundImage.Tag))
+				return;
 
 			int ow = GetWByBtn(origin);
 			int oh = GetHByBtn(origin);
@@ -198,10 +227,9 @@ namespace LianLianKan
 			FindPathNext(Direction.DOWN, 0, ow, oh + 1, dw, dh);
 			FindPathNext(Direction.LEFT, 0, ow - 1, oh, dw, dh);
 
-			
 		}
 
-		void FindPathNext(Direction dir, int turnTimes, int targetW, int targetH, int destinationW, int destinationH)
+		private void FindPathNext(Direction dir, int turnTimes, int targetW, int targetH, int destinationW, int destinationH)
 		{
 			//Console.WriteLine(dir.ToString());
 			//边界情况 
@@ -246,266 +274,44 @@ namespace LianLianKan
 					FindPathNext(Direction.LEFT, turnTimes, targetW - 1, targetH, destinationW, destinationH);
 					break;
 			}
-			
-
 		}
-
-
-
-		#region 是否可达
-
-		//bool IsFindPath(Button origin,Button destination)
-		//{
-			
-		//	bool finded;
-
-		//	Position viaPosition;
-		//	Position originPosition;
-		//	Position destinationPosition;
-
-		//	//Name格式为 w_h
-		//	string o = origin.Name;
-		//	string d = destination.Name;
-
-		//	int ow = int.Parse(o.Substring(0, o.LastIndexOf('_')));
-		//	int oh = int.Parse(o.Substring(o.LastIndexOf('_') + 1));
-		//	int dw = int.Parse(d.Substring(0, d.LastIndexOf('_')));
-		//	int dh = int.Parse(d.Substring(d.LastIndexOf('_') + 1));
-
-		//	viaPosition = new Position(ow, oh);
-		//	originPosition = new Position(ow,oh);
-		//	destinationPosition = new Position(dw, dh);
-
-		//	Console.WriteLine(origin.Name + ", " + destination.Name);
-
-
-			
-		//	#region
-		//	Console.WriteLine("up");
-		//	if (FindPathNext(Direction.UP, 0, viaPosition, originPosition, destinationPosition))
-		//	{
-				
-		//		return true;
-		//	}
-		//	Console.WriteLine("right");
-		//	if (FindPathNext(Direction.RIGHT, 0, viaPosition, originPosition, destinationPosition))
-		//	{
-				
-		//		return true;
-		//	}
-		//	Console.WriteLine("down");
-		//	if (FindPathNext(Direction.DOWN, 0, viaPosition, originPosition, destinationPosition))
-		//	{
-				
-		//		return true;
-		//	}
-		//	Console.WriteLine("left");
-		//	if (FindPathNext(Direction.LEFT, 0, viaPosition, originPosition, destinationPosition))
-		//	{
-				
-		//		return true;
-		//	}
-		//	#endregion
-		//	Console.WriteLine("no finded");
-		//	return false;
-		//}
 
 		#endregion
 
-		#region 寻路系统
+		#region 根据名称获得位置
 
-
-		///// <summary>
-		///// 寻路系统
-		///// </summary>
-		///// <param name="dir">下一个方向</param>
-		///// <param name="turnTimes">已转角次数</param>
-		///// <param name="viaPosition">过程中的坐标，第一次为起点坐标</param>
-		///// <param name="originPosition">起点坐标</param>
-		///// <param name="destinationPosition">目标坐标</param>
-		//bool FindPathNext(Direction dir,int turnTimes,Position viaPosition, Position originPosition, Position destinationPosition)
-		//{
-		//	if (viaPosition.w < -1 || viaPosition.w > Data.width)
-		//	{
-		//		return false;
-		//	}
-		//	if (viaPosition.h < -1 || viaPosition.h > Data.height)
-		//	{
-		//		return false;
-		//	}
-		//	if (turnTimes > 2)
-		//	{
-		//		return false;
-		//	}
-		//	if (viaPosition.w >= 0 && viaPosition.w < Data.width && viaPosition.h >= 0 && viaPosition.h < Data.height)
-		//	{
-		//		Console.WriteLine("Name:" + btn[viaPosition.w, viaPosition.h].Name);
-
-		//		//if ((viaPosition.w != originPosition.w) || (viaPosition.h != originPosition.h))
-		//		//{
-		//		//	if (btn[viaPosition.w, viaPosition.h] != null)
-		//		//	{
-
-		//		//撞到物体，并且不为起点
-		//		if ((btn[viaPosition.w, viaPosition.h] != null) && (viaPosition.w != originPosition.w || viaPosition.h != originPosition.h))
-		//		{
-		//				Console.WriteLine("originPosition.w:" + viaPosition.w + ", originPosition.h:" + viaPosition.h);
-		//				if (btn[viaPosition.w, viaPosition.h].BackgroundImage.Tag.Equals(btn[destinationPosition.w, destinationPosition.h].BackgroundImage.Tag))
-		//				{
-		//					Console.WriteLine("true");
-		//					return true;
-		//				}
-		//				else
-		//				{
-		//					Console.WriteLine("false");
-		//					return false;
-		//				}
-		//		}
-		//		//	}
-		//		//}
-		//	}
-		//	switch (dir)
-		//	{
-		//		case Direction.UP:
-
-		//			viaPosition.h = viaPosition.h - 1;
-
-		//			if (FindPathNext(Direction.UP, turnTimes, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-
-		//			if (FindPathNext(Direction.RIGHT, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-
-		//			if (FindPathNext(Direction.LEFT, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-
-		//			break;
-		//		case Direction.RIGHT:
-		//			Console.WriteLine("RIGHT");
-		//			viaPosition.w = viaPosition.w + 1;
-		//			if (FindPathNext(Direction.UP, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			if (FindPathNext(Direction.RIGHT, turnTimes, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			if (FindPathNext(Direction.DOWN, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			break;
-		//		case Direction.DOWN:
-		//			Console.WriteLine("DOWN");
-		//			viaPosition.h = viaPosition.h + 1;
-		//			if (FindPathNext(Direction.RIGHT, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			if (FindPathNext(Direction.DOWN, turnTimes, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			if (FindPathNext(Direction.LEFT, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			break;
-		//		case Direction.LEFT:
-		//			Console.WriteLine("LEFT");
-		//			viaPosition.w = viaPosition.w - 1;
-		//			if (FindPathNext(Direction.UP, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			if (FindPathNext(Direction.DOWN, turnTimes + 1, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			if (FindPathNext(Direction.LEFT, turnTimes, viaPosition, originPosition, destinationPosition))
-		//			{
-		//				return true;
-		//			}
-		//			break;
-		//	}
-		//	return false;
-		//}
-		
-		#endregion
-
-
-		void btnClick(object sender, EventArgs e)
-		{
-			
-			Button tempCurrentBtn = (Button)sender;
-			if (currentBtnTag == null)
-			{
-				currentBtnTag = tempCurrentBtn.BackgroundImage.Tag;
-				tempCurrentBtn.Enabled = false;
-				tempLastBtn = tempCurrentBtn;
-				
-
-			}
-			else
-			{
-				if (currentBtnTag.Equals(tempCurrentBtn.BackgroundImage.Tag))
-				{
-					//Destroy
-					IsFindPath(tempLastBtn, tempCurrentBtn);
-					if (finded)
-					{
-						//Console.Write(tempLastBtn.Name + "," + tempCurrentBtn.Name);
-						btn[GetWByBtn(tempLastBtn), GetHByBtn(tempLastBtn)] = null;
-						btn[GetWByBtn(tempCurrentBtn), GetHByBtn(tempCurrentBtn)] = null;
-						panel_gameArea.Controls.Remove(tempLastBtn);
-						panel_gameArea.Controls.Remove(tempCurrentBtn);
-						finded = false;
-						currentBtnTag = null;
-					}
-					else
-					{
-						tempLastBtn.Enabled = true;
-						currentBtnTag = null;
-					}
-					//MessageBox.Show("Same!");
-				}
-				else
-				{
-					currentBtnTag = null;
-					tempLastBtn.Enabled = true;
-					
-
-				}
-			}
-		}
-
-
-		int GetWByBtn(Button button)
+		private int GetWByBtn(Button button)
 		{
 			string buttonName = button.Name;
 			int w = int.Parse(buttonName.Substring(0, buttonName.LastIndexOf('_')));
 			return w;
 		}
 
-		int GetHByBtn(Button button)
+		private int GetHByBtn(Button button)
 		{
 			string buttonName = button.Name;
 			int h = int.Parse(buttonName.Substring(buttonName.LastIndexOf('_') + 1));
 			return h;
 		}
 
-		private void btn_exit_Click(object sender, EventArgs e)
+		#endregion
+
+		//遍历寻解
+		private bool CheckResult()
 		{
-			Application.Exit();
+			for (int i = 0; i < allBtn.Count - 1; i++)
+			{
+				for (int ii = i + 1; ii < allBtn.Count; ii++)
+				{
+					IsFindPath(allBtn[i], allBtn[ii]);
+					if (finded)
+					{
+						finded = false;
+						return true;
+					}
+				}
+			}
+			return false;
 		}
-
-
 	}
 }
