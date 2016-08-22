@@ -51,7 +51,7 @@ namespace LianLianKan
 					}
 				}
 			}
-			
+
 			ImageInit();
 			GridInit();
 			RandomApplyImage();

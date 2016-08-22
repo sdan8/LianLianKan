@@ -7,3 +7,12 @@ F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Properti
 F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.csproj.GenerateResource.Cache
 F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.exe
 F:\files\C＃\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.pdb
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\bin\Debug\LianLianKan.exe.config
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.exe
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.pdb
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\bin\Debug\LianLianKan.exe
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\bin\Debug\LianLianKan.pdb
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.csprojResolveAssemblyReference.cache
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Frm_LianLianKan.resources
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Properties.Resources.resources
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.csproj.GenerateResource.Cache
