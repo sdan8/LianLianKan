@@ -22,10 +22,14 @@ namespace LianLianKan
 
 		Button[,] btn;
 		List<Button> btnList = new List<Button>();
-		List<Button> allBtn = new List<Button>();
+		List<Button> allBtn = new List<Button>();	//场上未消除的所有按钮
 		Button currentBtn;
 		Button tempLastBtn;
-		bool finded;
+		bool finded = false;
+
+		int minute = 0;
+		int second = 0;
+
 		
 
 		public Frm_LianLianKan()
@@ -36,12 +40,14 @@ namespace LianLianKan
 		private void Frm_LianLianKan_Load(object sender, EventArgs e)
 		{
 			btn = new Button[Data.width, Data.height];
-			tempLastBtn = new Button();
 			finded = false;
 		}
 
 		private void btn_start_Click(object sender, EventArgs e)
 		{
+			minute = 0;
+			second = 0;
+			timer1.Start();
 			if (btn_start.Text.Trim() == "重新开始")
 			{
 				panel_gameArea.BackgroundImage = null;
@@ -58,7 +64,7 @@ namespace LianLianKan
 			GridInit();
 			RandomApplyImage();
 			btn_start.Text = "重新开始";
-
+			panel_gameArea.BackgroundImage = Bitmap.FromFile(Application.StartupPath + @"\img\bg.jpg");
 			allBtn.Clear();
 			for (int i = 0; i < Data.height; i++)
 			{
@@ -67,6 +73,7 @@ namespace LianLianKan
 					allBtn.Add(btn[ii, i]);
 				}
 			}
+			
 		}
 
 		private void btn_clear_Click(object sender, EventArgs e)
@@ -110,11 +117,13 @@ namespace LianLianKan
 
 					if (allBtn.Count == 0)
 					{
-						MessageBox.Show("你赢了！", "恭喜", MessageBoxButtons.OK);
+						timer1.Stop();
+						MessageBox.Show("你赢了！用时：" + minute + "分" + second + "秒", "恭喜", MessageBoxButtons.OK);
 					}
 					//遍历是否有解
 					else if(!CheckResult())
 					{
+						timer1.Stop();
 						MessageBox.Show("无解", "提示", MessageBoxButtons.OK);
 					}
 				}
@@ -152,7 +161,7 @@ namespace LianLianKan
 					bt.Click += new EventHandler(btnClick);
 					bt.Name = ii.ToString() + "_" + i.ToString();
 					bt.Text = "";
-					bt.Location = new Point(0 + ii * (Data.imageSize + Data.offset), 0 + i * (Data.imageSize + Data.offset)); // 按钮屏幕位置
+					bt.Location = new Point(1 + ii * (Data.imageSize + Data.offset), 1 + i * (Data.imageSize + Data.offset)); // 按钮屏幕位置
 					bt.Size = new Size(Data.imageSize, Data.imageSize);
 					bt.Parent = panel_gameArea;
 					bt.BackgroundImageLayout = ImageLayout.Stretch;
@@ -313,5 +322,25 @@ namespace LianLianKan
 			}
 			return false;
 		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			second++;
+			if (second == 60)
+			{
+				second = 0;
+				minute++;
+			}
+			if (minute != 0)
+			{
+				lab_timeCount.Text = minute.ToString() + "分" + second.ToString() + "秒";
+			}
+			else
+			{
+				lab_timeCount.Text = second.ToString() + "秒";
+			}
+		}
+		
+
 	}
 }
