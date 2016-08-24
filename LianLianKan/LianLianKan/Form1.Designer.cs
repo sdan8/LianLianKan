@@ -36,6 +36,11 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.lab_timeCount = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.开始ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.排行榜ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btn_start
@@ -103,6 +108,39 @@
 			this.timer1.Interval = 1000;
 			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
 			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.开始ToolStripMenuItem,
+            this.排行榜ToolStripMenuItem,
+            this.退出ToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(884, 24);
+			this.menuStrip1.TabIndex = 6;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// 开始ToolStripMenuItem
+			// 
+			this.开始ToolStripMenuItem.Name = "开始ToolStripMenuItem";
+			this.开始ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+			this.开始ToolStripMenuItem.Text = "开始";
+			this.开始ToolStripMenuItem.Click += new System.EventHandler(this.开始ToolStripMenuItem_Click);
+			// 
+			// 排行榜ToolStripMenuItem
+			// 
+			this.排行榜ToolStripMenuItem.Name = "排行榜ToolStripMenuItem";
+			this.排行榜ToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+			this.排行榜ToolStripMenuItem.Text = "排行榜";
+			this.排行榜ToolStripMenuItem.Click += new System.EventHandler(this.排行榜ToolStripMenuItem_Click);
+			// 
+			// 退出ToolStripMenuItem
+			// 
+			this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
+			this.退出ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+			this.退出ToolStripMenuItem.Text = "退出";
+			this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+			// 
 			// Frm_LianLianKan
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -114,12 +152,16 @@
 			this.Controls.Add(this.btn_exit);
 			this.Controls.Add(this.panel_gameArea);
 			this.Controls.Add(this.btn_start);
+			this.Controls.Add(this.menuStrip1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "Frm_LianLianKan";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "连连看";
 			this.Load += new System.EventHandler(this.Frm_LianLianKan_Load);
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -134,6 +176,10 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lab_timeCount;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem 开始ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 排行榜ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
 	}
 }
 

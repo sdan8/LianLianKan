@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace LianLianKan
 {
@@ -119,6 +120,7 @@ namespace LianLianKan
 					{
 						timer1.Stop();
 						MessageBox.Show("你赢了！用时：" + minute + "分" + second + "秒", "恭喜", MessageBoxButtons.OK);
+						SaveTime();
 					}
 					//遍历是否有解
 					else if(!CheckResult())
@@ -340,7 +342,60 @@ namespace LianLianKan
 				lab_timeCount.Text = second.ToString() + "秒";
 			}
 		}
-		
 
+		private void SaveTime()
+		{
+			int time = minute * 60 + second;
+			int count = 0;
+			char flag = '#';
+			string lineTime;
+			string str;
+
+			string[] lines = File.ReadAllLines(Application.StartupPath + @"\data.txt");
+
+			foreach (var line in lines)
+			{
+				lineTime = line.Substring(line.LastIndexOf(flag) + 1);
+				if (Convert.ToInt32(lineTime) > time)	break;
+				count++;
+			}
+			//没进入排行榜
+			if (count == 10)
+			{
+				return;
+			}
+			//进入排行榜
+			else
+			{
+				Frm_InputBox frm_inputBox = new Frm_InputBox();
+				frm_inputBox.ShowDialog();
+				//格式化
+				str = frm_inputBox.Value + flag + time.ToString();
+				//排名后移
+				for (int i = 9; i > count; i--)
+				{
+					lines[i] = lines[i - 1];
+				}
+				lines[count] = str;
+				File.WriteAllLines(Application.StartupPath + @"\data.txt", lines);
+			}
+		}
+
+		private void 开始ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btn_start_Click(sender, e);
+			开始ToolStripMenuItem.Text = "重新开始";
+		}
+
+		private void 排行榜ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			FrmRank frmRank = new FrmRank();
+			frmRank.ShowDialog();
+		}
+
+		private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
 	}
 }

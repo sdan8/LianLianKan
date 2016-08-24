@@ -16,3 +16,5 @@ F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianL
 F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Frm_LianLianKan.resources
 F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Properties.Resources.resources
 F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.csproj.GenerateResource.Cache
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.FrmRank.resources
+F:\files\GitHub\repositories\LianLianKan\LianLianKan\LianLianKan\obj\Debug\LianLianKan.Frm_InputBox.resources
