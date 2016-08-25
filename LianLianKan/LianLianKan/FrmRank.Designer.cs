@@ -54,17 +54,17 @@
 			this.btn_ok = new System.Windows.Forms.Button();
 			this.btn_clear = new System.Windows.Forms.Button();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.lab_name = new System.Windows.Forms.Label();
-			this.lab_name0 = new System.Windows.Forms.Label();
-			this.lab_name1 = new System.Windows.Forms.Label();
-			this.lab_name2 = new System.Windows.Forms.Label();
-			this.lab_name3 = new System.Windows.Forms.Label();
-			this.lab_name4 = new System.Windows.Forms.Label();
-			this.lab_name5 = new System.Windows.Forms.Label();
-			this.lab_name6 = new System.Windows.Forms.Label();
-			this.lab_name7 = new System.Windows.Forms.Label();
-			this.lab_name8 = new System.Windows.Forms.Label();
 			this.lab_name9 = new System.Windows.Forms.Label();
+			this.lab_name8 = new System.Windows.Forms.Label();
+			this.lab_name7 = new System.Windows.Forms.Label();
+			this.lab_name6 = new System.Windows.Forms.Label();
+			this.lab_name5 = new System.Windows.Forms.Label();
+			this.lab_name4 = new System.Windows.Forms.Label();
+			this.lab_name3 = new System.Windows.Forms.Label();
+			this.lab_name2 = new System.Windows.Forms.Label();
+			this.lab_name1 = new System.Windows.Forms.Label();
+			this.lab_name0 = new System.Windows.Forms.Label();
+			this.lab_name = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -337,86 +337,14 @@
 			this.panel1.Size = new System.Drawing.Size(251, 279);
 			this.panel1.TabIndex = 26;
 			// 
-			// lab_name
+			// lab_name9
 			// 
-			this.lab_name.AutoSize = true;
-			this.lab_name.Location = new System.Drawing.Point(89, 7);
-			this.lab_name.Name = "lab_name";
-			this.lab_name.Size = new System.Drawing.Size(29, 12);
-			this.lab_name.TabIndex = 24;
-			this.lab_name.Text = "玩家";
-			// 
-			// lab_name0
-			// 
-			this.lab_name0.AutoSize = true;
-			this.lab_name0.Location = new System.Drawing.Point(95, 31);
-			this.lab_name0.Name = "lab_name0";
-			this.lab_name0.Size = new System.Drawing.Size(17, 12);
-			this.lab_name0.TabIndex = 25;
-			this.lab_name0.Text = "无";
-			// 
-			// lab_name1
-			// 
-			this.lab_name1.AutoSize = true;
-			this.lab_name1.Location = new System.Drawing.Point(95, 55);
-			this.lab_name1.Name = "lab_name1";
-			this.lab_name1.Size = new System.Drawing.Size(17, 12);
-			this.lab_name1.TabIndex = 26;
-			this.lab_name1.Text = "无";
-			// 
-			// lab_name2
-			// 
-			this.lab_name2.AutoSize = true;
-			this.lab_name2.Location = new System.Drawing.Point(95, 79);
-			this.lab_name2.Name = "lab_name2";
-			this.lab_name2.Size = new System.Drawing.Size(17, 12);
-			this.lab_name2.TabIndex = 27;
-			this.lab_name2.Text = "无";
-			// 
-			// lab_name3
-			// 
-			this.lab_name3.AutoSize = true;
-			this.lab_name3.Location = new System.Drawing.Point(95, 103);
-			this.lab_name3.Name = "lab_name3";
-			this.lab_name3.Size = new System.Drawing.Size(17, 12);
-			this.lab_name3.TabIndex = 28;
-			this.lab_name3.Text = "无";
-			// 
-			// lab_name4
-			// 
-			this.lab_name4.AutoSize = true;
-			this.lab_name4.Location = new System.Drawing.Point(95, 127);
-			this.lab_name4.Name = "lab_name4";
-			this.lab_name4.Size = new System.Drawing.Size(17, 12);
-			this.lab_name4.TabIndex = 29;
-			this.lab_name4.Text = "无";
-			// 
-			// lab_name5
-			// 
-			this.lab_name5.AutoSize = true;
-			this.lab_name5.Location = new System.Drawing.Point(95, 151);
-			this.lab_name5.Name = "lab_name5";
-			this.lab_name5.Size = new System.Drawing.Size(17, 12);
-			this.lab_name5.TabIndex = 30;
-			this.lab_name5.Text = "无";
-			// 
-			// lab_name6
-			// 
-			this.lab_name6.AutoSize = true;
-			this.lab_name6.Location = new System.Drawing.Point(95, 175);
-			this.lab_name6.Name = "lab_name6";
-			this.lab_name6.Size = new System.Drawing.Size(17, 12);
-			this.lab_name6.TabIndex = 31;
-			this.lab_name6.Text = "无";
-			// 
-			// lab_name7
-			// 
-			this.lab_name7.AutoSize = true;
-			this.lab_name7.Location = new System.Drawing.Point(95, 199);
-			this.lab_name7.Name = "lab_name7";
-			this.lab_name7.Size = new System.Drawing.Size(17, 12);
-			this.lab_name7.TabIndex = 32;
-			this.lab_name7.Text = "无";
+			this.lab_name9.AutoSize = true;
+			this.lab_name9.Location = new System.Drawing.Point(95, 247);
+			this.lab_name9.Name = "lab_name9";
+			this.lab_name9.Size = new System.Drawing.Size(17, 12);
+			this.lab_name9.TabIndex = 34;
+			this.lab_name9.Text = "无";
 			// 
 			// lab_name8
 			// 
@@ -427,14 +355,86 @@
 			this.lab_name8.TabIndex = 33;
 			this.lab_name8.Text = "无";
 			// 
-			// lab_name9
+			// lab_name7
 			// 
-			this.lab_name9.AutoSize = true;
-			this.lab_name9.Location = new System.Drawing.Point(95, 247);
-			this.lab_name9.Name = "lab_name9";
-			this.lab_name9.Size = new System.Drawing.Size(17, 12);
-			this.lab_name9.TabIndex = 34;
-			this.lab_name9.Text = "无";
+			this.lab_name7.AutoSize = true;
+			this.lab_name7.Location = new System.Drawing.Point(95, 199);
+			this.lab_name7.Name = "lab_name7";
+			this.lab_name7.Size = new System.Drawing.Size(17, 12);
+			this.lab_name7.TabIndex = 32;
+			this.lab_name7.Text = "无";
+			// 
+			// lab_name6
+			// 
+			this.lab_name6.AutoSize = true;
+			this.lab_name6.Location = new System.Drawing.Point(95, 175);
+			this.lab_name6.Name = "lab_name6";
+			this.lab_name6.Size = new System.Drawing.Size(17, 12);
+			this.lab_name6.TabIndex = 31;
+			this.lab_name6.Text = "无";
+			// 
+			// lab_name5
+			// 
+			this.lab_name5.AutoSize = true;
+			this.lab_name5.Location = new System.Drawing.Point(95, 151);
+			this.lab_name5.Name = "lab_name5";
+			this.lab_name5.Size = new System.Drawing.Size(17, 12);
+			this.lab_name5.TabIndex = 30;
+			this.lab_name5.Text = "无";
+			// 
+			// lab_name4
+			// 
+			this.lab_name4.AutoSize = true;
+			this.lab_name4.Location = new System.Drawing.Point(95, 127);
+			this.lab_name4.Name = "lab_name4";
+			this.lab_name4.Size = new System.Drawing.Size(17, 12);
+			this.lab_name4.TabIndex = 29;
+			this.lab_name4.Text = "无";
+			// 
+			// lab_name3
+			// 
+			this.lab_name3.AutoSize = true;
+			this.lab_name3.Location = new System.Drawing.Point(95, 103);
+			this.lab_name3.Name = "lab_name3";
+			this.lab_name3.Size = new System.Drawing.Size(17, 12);
+			this.lab_name3.TabIndex = 28;
+			this.lab_name3.Text = "无";
+			// 
+			// lab_name2
+			// 
+			this.lab_name2.AutoSize = true;
+			this.lab_name2.Location = new System.Drawing.Point(95, 79);
+			this.lab_name2.Name = "lab_name2";
+			this.lab_name2.Size = new System.Drawing.Size(17, 12);
+			this.lab_name2.TabIndex = 27;
+			this.lab_name2.Text = "无";
+			// 
+			// lab_name1
+			// 
+			this.lab_name1.AutoSize = true;
+			this.lab_name1.Location = new System.Drawing.Point(95, 55);
+			this.lab_name1.Name = "lab_name1";
+			this.lab_name1.Size = new System.Drawing.Size(17, 12);
+			this.lab_name1.TabIndex = 26;
+			this.lab_name1.Text = "无";
+			// 
+			// lab_name0
+			// 
+			this.lab_name0.AutoSize = true;
+			this.lab_name0.Location = new System.Drawing.Point(95, 31);
+			this.lab_name0.Name = "lab_name0";
+			this.lab_name0.Size = new System.Drawing.Size(17, 12);
+			this.lab_name0.TabIndex = 25;
+			this.lab_name0.Text = "无";
+			// 
+			// lab_name
+			// 
+			this.lab_name.AutoSize = true;
+			this.lab_name.Location = new System.Drawing.Point(89, 7);
+			this.lab_name.Name = "lab_name";
+			this.lab_name.Size = new System.Drawing.Size(29, 12);
+			this.lab_name.TabIndex = 24;
+			this.lab_name.Text = "玩家";
 			// 
 			// FrmRank
 			// 
@@ -449,6 +449,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.MaximizeBox = false;
 			this.Name = "FrmRank";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "排行榜";
 			this.Load += new System.EventHandler(this.FrmRank_Load);
 			this.panel1.ResumeLayout(false);

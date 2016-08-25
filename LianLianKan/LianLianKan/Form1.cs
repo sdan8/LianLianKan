@@ -13,7 +13,7 @@ namespace LianLianKan
 {
 	public partial class Frm_LianLianKan : Form
 	{
-		enum Direction
+		public enum Direction
 		{
 			UP,
 			RIGHT,
@@ -26,9 +26,11 @@ namespace LianLianKan
 		List<Button> allBtn = new List<Button>();	//场上未消除的所有按钮
 		Button currentBtn;
 		Button tempLastBtn;
+		Button key1;
+		Button key2;
 		bool finded = false;
 
-		int minute = 0;
+		//int minute = 0;
 		int second = 0;
 
 		
@@ -46,7 +48,7 @@ namespace LianLianKan
 
 		private void btn_start_Click(object sender, EventArgs e)
 		{
-			minute = 0;
+			//minute = 0;
 			second = 0;
 			timer1.Start();
 			if (btn_start.Text.Trim() == "重新开始")
@@ -74,7 +76,7 @@ namespace LianLianKan
 					allBtn.Add(btn[ii, i]);
 				}
 			}
-			
+			btn_key.Enabled = true;
 		}
 
 		private void btn_clear_Click(object sender, EventArgs e)
@@ -98,7 +100,7 @@ namespace LianLianKan
 				currentBtn = tempCurrentBtn;
 				tempCurrentBtn.Enabled = false;
 				tempCurrentBtn.FlatAppearance.BorderSize = 2;
-				tempCurrentBtn.FlatAppearance.BorderColor = Color.Red;
+				tempCurrentBtn.FlatAppearance.BorderColor = Color.Orange;
 				tempLastBtn = tempCurrentBtn;
 			}
 			//选中第二个
@@ -115,11 +117,10 @@ namespace LianLianKan
 					panel_gameArea.Controls.Remove(tempCurrentBtn);
 					finded = false;
 					currentBtn = null;
-
 					if (allBtn.Count == 0)
 					{
 						timer1.Stop();
-						MessageBox.Show("你赢了！用时：" + minute + "分" + second + "秒", "恭喜", MessageBoxButtons.OK);
+						MessageBox.Show("你赢了！用时：" + second / 60 + "分" + second % 60 + "秒", "恭喜", MessageBoxButtons.OK);
 						SaveTime();
 					}
 					//遍历是否有解
@@ -137,6 +138,16 @@ namespace LianLianKan
 					currentBtn = null;
 				}
 			}
+		}
+
+		private void btn_key_Click(object sender, EventArgs e)
+		{
+			CheckResult();
+			key1.FlatAppearance.BorderSize = 2;
+			key1.FlatAppearance.BorderColor = Color.Red;
+			key2.FlatAppearance.BorderSize = 2;
+			key2.FlatAppearance.BorderColor = Color.Red;
+			second += 15;
 		}
 
 		private void btn_exit_Click(object sender, EventArgs e)
@@ -237,9 +248,17 @@ namespace LianLianKan
 			FindPathNext(Direction.RIGHT, 0, ow + 1, oh, dw, dh);
 			FindPathNext(Direction.DOWN, 0, ow, oh + 1, dw, dh);
 			FindPathNext(Direction.LEFT, 0, ow - 1, oh, dw, dh);
-
 		}
 
+		/// <summary>
+		/// 寻找路径
+		/// </summary>
+		/// <param name="dir">方向</param>
+		/// <param name="turnTimes">转角次数</param>
+		/// <param name="targetW">下一个W</param>
+		/// <param name="targetH">下一个H</param>
+		/// <param name="destinationW">终点W</param>
+		/// <param name="destinationH">终点H</param>
 		private void FindPathNext(Direction dir, int turnTimes, int targetW, int targetH, int destinationW, int destinationH)
 		{
 			//Console.WriteLine(dir.ToString());
@@ -257,10 +276,7 @@ namespace LianLianKan
 			}
 			if (targetW >= 0 && targetW < Data.width && targetH >= 0 && targetH < Data.height)
 			{
-				if (btn[targetW, targetH] != null)
-				{
-					return;
-				}
+				if (btn[targetW, targetH] != null)	return;
 			}
 			switch (dir)
 			{
@@ -317,6 +333,8 @@ namespace LianLianKan
 					IsFindPath(allBtn[i], allBtn[ii]);
 					if (finded)
 					{
+						key1 = allBtn[i];
+						key2 = allBtn[ii];
 						finded = false;
 						return true;
 					}
@@ -328,14 +346,15 @@ namespace LianLianKan
 		private void timer1_Tick(object sender, EventArgs e)
 		{
 			second++;
-			if (second == 60)
+			if (second >= 60)
 			{
-				second = 0;
-				minute++;
+				//second = second % 60;
+				//minute++;
 			}
-			if (minute != 0)
+			//if (minute != 0)
+			if ((second / 60) != 0)
 			{
-				lab_timeCount.Text = minute.ToString() + "分" + second.ToString() + "秒";
+				lab_timeCount.Text = (second / 60).ToString() + "分" + (second % 60).ToString() + "秒";
 			}
 			else
 			{
@@ -345,7 +364,8 @@ namespace LianLianKan
 
 		private void SaveTime()
 		{
-			int time = minute * 60 + second;
+			//int time = minute * 60 + second;
+			int time = second;
 			int count = 0;
 			char flag = '#';
 			string lineTime;
@@ -381,6 +401,8 @@ namespace LianLianKan
 			}
 		}
 
+		#region 菜单栏
+
 		private void 开始ToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			btn_start_Click(sender, e);
@@ -397,5 +419,9 @@ namespace LianLianKan
 		{
 			Application.Exit();
 		}
+
+		#endregion
+
+		
 	}
 }

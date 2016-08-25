@@ -70,6 +70,7 @@
 			this.Controls.Add(this.textBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.Name = "Frm_InputBox";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "新记录";
 			this.ResumeLayout(false);
 			this.PerformLayout();

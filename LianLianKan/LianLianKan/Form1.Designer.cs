@@ -40,15 +40,17 @@
 			this.开始ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.排行榜ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.btn_key = new System.Windows.Forms.Button();
+			this.panel_gameArea.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btn_start
 			// 
 			this.btn_start.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.btn_start.Location = new System.Drawing.Point(126, 58);
+			this.btn_start.Location = new System.Drawing.Point(69, 60);
 			this.btn_start.Name = "btn_start";
-			this.btn_start.Size = new System.Drawing.Size(120, 60);
+			this.btn_start.Size = new System.Drawing.Size(100, 62);
 			this.btn_start.TabIndex = 0;
 			this.btn_start.Text = "开始";
 			this.btn_start.UseVisualStyleBackColor = true;
@@ -56,7 +58,7 @@
 			// 
 			// btn_clear
 			// 
-			this.btn_clear.Location = new System.Drawing.Point(733, 287);
+			this.btn_clear.Location = new System.Drawing.Point(222, 89);
 			this.btn_clear.Name = "btn_clear";
 			this.btn_clear.Size = new System.Drawing.Size(120, 60);
 			this.btn_clear.TabIndex = 1;
@@ -69,6 +71,7 @@
 			// 
 			this.panel_gameArea.BackColor = System.Drawing.SystemColors.Control;
 			this.panel_gameArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.panel_gameArea.Controls.Add(this.btn_clear);
 			this.panel_gameArea.Location = new System.Drawing.Point(69, 159);
 			this.panel_gameArea.Name = "panel_gameArea";
 			this.panel_gameArea.Size = new System.Drawing.Size(743, 425);
@@ -76,9 +79,9 @@
 			// 
 			// btn_exit
 			// 
-			this.btn_exit.Location = new System.Drawing.Point(617, 58);
+			this.btn_exit.Location = new System.Drawing.Point(712, 60);
 			this.btn_exit.Name = "btn_exit";
-			this.btn_exit.Size = new System.Drawing.Size(120, 60);
+			this.btn_exit.Size = new System.Drawing.Size(100, 62);
 			this.btn_exit.TabIndex = 3;
 			this.btn_exit.Text = "退出";
 			this.btn_exit.UseVisualStyleBackColor = true;
@@ -88,7 +91,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.label1.Location = new System.Drawing.Point(309, 70);
+			this.label1.Location = new System.Drawing.Point(213, 77);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(100, 29);
 			this.label1.TabIndex = 4;
@@ -98,7 +101,7 @@
 			// 
 			this.lab_timeCount.AutoSize = true;
 			this.lab_timeCount.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-			this.lab_timeCount.Location = new System.Drawing.Point(415, 70);
+			this.lab_timeCount.Location = new System.Drawing.Point(319, 77);
 			this.lab_timeCount.Name = "lab_timeCount";
 			this.lab_timeCount.Size = new System.Drawing.Size(0, 29);
 			this.lab_timeCount.TabIndex = 5;
@@ -141,12 +144,23 @@
 			this.退出ToolStripMenuItem.Text = "退出";
 			this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
 			// 
+			// btn_key
+			// 
+			this.btn_key.Enabled = false;
+			this.btn_key.Location = new System.Drawing.Point(540, 60);
+			this.btn_key.Name = "btn_key";
+			this.btn_key.Size = new System.Drawing.Size(100, 62);
+			this.btn_key.TabIndex = 7;
+			this.btn_key.Text = "提示";
+			this.btn_key.UseVisualStyleBackColor = true;
+			this.btn_key.Click += new System.EventHandler(this.btn_key_Click);
+			// 
 			// Frm_LianLianKan
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(884, 661);
-			this.Controls.Add(this.btn_clear);
+			this.Controls.Add(this.btn_key);
 			this.Controls.Add(this.lab_timeCount);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btn_exit);
@@ -160,6 +174,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "连连看";
 			this.Load += new System.EventHandler(this.Frm_LianLianKan_Load);
+			this.panel_gameArea.ResumeLayout(false);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -180,6 +195,7 @@
 		private System.Windows.Forms.ToolStripMenuItem 开始ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 排行榜ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+		private System.Windows.Forms.Button btn_key;
 	}
 }
 
