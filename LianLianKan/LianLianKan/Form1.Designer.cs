@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_LianLianKan));
 			this.btn_start = new System.Windows.Forms.Button();
 			this.btn_clear = new System.Windows.Forms.Button();
 			this.panel_gameArea = new System.Windows.Forms.Panel();
@@ -168,6 +169,7 @@
 			this.Controls.Add(this.btn_start);
 			this.Controls.Add(this.menuStrip1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "Frm_LianLianKan";
